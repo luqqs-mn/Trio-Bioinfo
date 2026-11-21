@@ -18,7 +18,7 @@ hand trace), implementer (src/a1_triage.py), tester (tests and ruff), reviewer (
 before it is merged). Everybody writes code and everybody commits. Roles rotate after the first
 two weeks. <Everybody writes code and everybody commits. The roles are rotated among us after the first week>
 
-<Since this is a 3 member group, we have decided to divide the coding and testing tasks equally among us>
+Since this is a 3 member group, we have decided to divide the coding and testing tasks equally among us
 
 - **Coordinator & Outputs (Member 1):** Handles GitHub setup, `results_to_csv`,`build_report`, named constants, README, and the final CLI run. Also acts as the main reviewer. 
 - **Core Logic (Member 2):** Handles `classify_variant`, `triage`, and the boundary/invalid-input tests.
@@ -28,11 +28,11 @@ two weeks. <Everybody writes code and everybody commits. The roles are rotated a
 We will rotate the "Reviewer" role for each major pull request so everyone practices reviewing code.
 ## 3. How we make decisions
 
-<We discuss tasks and problems and divide it equally in our WhatsApp group. For coding decisions, we try to reach a mutual agreement among all members. If there is a disagreement we put it to a vote using whatsapp poll. The Coordinator (Member 1) will determine the final verdict. All final decisions regarding the project will be written down and tracked in the GitHub repository.>
+We discuss tasks and problems and divide it equally in our WhatsApp group. For coding decisions, we try to reach a mutual agreement among all members. If there is a disagreement we put it to a vote using whatsapp poll. The Coordinator (Member 1) will determine the final verdict. All final decisions regarding the project will be written down and tracked in the GitHub repository.
 
 ## 4. Meetings and communication
 
-<We will hold a weekly meeting on Discord every weekend at night to check progress and integrate our code. Our primary chat channel is WhatsApp, and we aim to reply to messages within 24 hours.>
+We will hold a weekly meeting on Discord every weekend at night to check progress and integrate our code. Our primary chat channel is WhatsApp, and we aim to reply to messages within 24 hours.
 
 ## 5. Rules for Git and for code
 
@@ -54,7 +54,7 @@ We keep ONE shared AI_USE_LOG.md. The Coordinator (Member 1) will maintain the l
 
 ## 8. Signatures
 
-- Signed: <MUHAMMAD LUQMAN BIN MOHD AZMI>, <A24CS0138>, <19/11/2026>
+- Signed: MUHAMMAD LUQMAN BIN MOHD AZMI, A24CS0138, 19/11/2026
 - Signed: <full name>, <matric number>, <date>
 - Signed: <full name>, <matric number>, <date>
 - Signed: <full name>, <matric number>, <date>
