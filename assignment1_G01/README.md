@@ -6,9 +6,8 @@
 ## Group
 
 - Group ID: <G01>
-- Members: <MUHAMMAD LUQMAN BIN MOHD AZMI A24CS0138>, <ABDUL RASYID (matric)>, <AINURRULNAJWA  A24CS0223>
-- ni testing nanti padam
-- testing part last
+- Members: <MUHAMMAD LUQMAN BIN MOHD AZMI A24CS0138>, <ABDUL RASYID BIN ABD GHANI A24CS0030>, <AINURRULNAJWA BINTI SAHLAN  A24CS0223>
+
 
 ## What this project does
 
@@ -16,11 +15,11 @@
 
 ## Set up
 
-```
 python -m venv .venv
-<activate command for your system>
+# Windows (PowerShell): .venv\Scripts\Activate.ps1
+# Windows (Command Prompt): .venv\Scripts\activate.bat
+# macOS / Linux: source .venv/bin/activate
 pip install -r requirements.txt
-```
 
 ## Run
 
