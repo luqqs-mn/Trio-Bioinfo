@@ -12,7 +12,7 @@
 
 ## What this project does
 
-<Three or four sentences: what a variant triage service is, what goes in, what comes out.>
+<This project implements a transparent, deterministic variant triage module for clinical genomics teaching scenario. It reads synthetic variant calls from a CSV file alongside  named quality-control thresholds and priority gene lists from a JSON parameter file>
 
 ## Set up
 
