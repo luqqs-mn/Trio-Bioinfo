@@ -6,7 +6,7 @@
 ## Group
 
 - Group ID: <G01>
-- Members: <MUHAMMAD LUQMAN BIN MOHD AZMI A24CS0138>, <full name (matric)>, <full name (matric)>
+- Members: <MUHAMMAD LUQMAN BIN MOHD AZMI A24CS0138>, <ABDUL RASYID (matric)>, <full name (matric)>
 
 ## What this project does
 
