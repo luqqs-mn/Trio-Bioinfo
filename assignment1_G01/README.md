@@ -5,8 +5,8 @@
 
 ## Group
 
-- Group ID: <your group id>
-- Members: <full name (matric)>, <full name (matric)>, <full name (matric)>
+- Group ID: <G01>
+- Members: <MUHAMMAD LUQMAN BIN MOHD AZMI A24CS0138>, <full name (matric)>, <full name (matric)>
 
 ## What this project does
 
