@@ -12,6 +12,7 @@ from pathlib import Path
 DECISIONS = ("prioritize", "review", "exclude")
 IMPACT_ORDER = ("high", "moderate", "low", "modifier")
 PRIORITY_IMPACTS = frozenset({"high", "moderate"})
+NON_PRIORITY_IMPACTS = frozenset({"low", "modifier"})
 CSV_COLUMNS = [
     "variant", "gene", "chrom", "pos", "depth", "quality", "impact", "decision", "reason",
 ]
@@ -38,24 +39,53 @@ def classify_variant(row: dict, params: dict) -> tuple[str, str]:
     """Return (decision, reason) for one variant row.
 
     Rules run in this order and the first rule that fires decides:
-      1. depth < params["min_depth"]                      -> exclude (low depth)
-      2. quality < params["min_quality"]                  -> exclude (low quality)
-      3. priority gene and impact high or moderate        -> prioritize
-      4. priority gene and impact low or modifier         -> review
-      5. other gene and impact high or moderate           -> review
-      6. other gene and impact low or modifier            -> exclude
+    1. depth < params["min_depth"]                      -> exclude (low depth)
+    2. quality < params["min_quality"]                  -> exclude (low quality)
+    3. priority gene and impact high or moderate        -> prioritize
+    4. priority gene and impact low or modifier         -> review
+    5. other gene and impact high or moderate           -> review
+    6. other gene and impact low or modifier            -> exclude
     Gene symbols and impact labels are compared after strip() and case folding.
     depth, quality and pos may arrive as text.
     """
-    raise NotImplementedError("TODO: implement classify_variant")
+    decision_prioritize, decision_review, decision_exclude = DECISIONS
 
+    depth = int(row["depth"])
+    quality = int(row["quality"])
+    min_depth = int(params["min_depth"])
+    min_quality = int(params["min_quality"])
+
+    if depth < min_depth:
+        return decision_exclude, f"Rule 1: depth {depth} < min_depth {min_depth}"
+    if quality < min_quality:
+        return decision_exclude, f"Rule 2: quality {quality} < min_quality {min_quality}"
+
+    gene = str(row["gene"]).strip().upper()
+    impact = str(row["impact"]).strip().lower()
+    priority_genes = {str(g).strip().upper() for g in params["priority_genes"]}
+    is_priority = gene in priority_genes
+
+    if is_priority and impact in PRIORITY_IMPACTS:
+        return decision_prioritize, f"Rule 3: priority gene {gene} with {impact} impact"
+    if is_priority and impact in NON_PRIORITY_IMPACTS:
+        return decision_review, f"Rule 4: priority gene {gene} with {impact} impact"
+    if not is_priority and impact in PRIORITY_IMPACTS:
+        return decision_review, f"Rule 5: non-priority gene {gene} with {impact} impact"
+    return decision_exclude, f"Rule 6: non-priority gene {gene} with {impact} impact"
 
 def triage(rows: list[dict], params: dict) -> list[dict]:
     """Classify every row. Returns NEW dicts (row fields plus decision and reason), same order.
 
     The input rows and params are never modified.
     """
-    raise NotImplementedError("TODO: implement triage")
+    results: list[dict] = []
+    for row in rows:
+        decision, reason = classify_variant(row, params)
+        new_row = dict(row)
+        new_row["decision"] = decision
+        new_row["reason"] = reason
+        results.append(new_row)
+    return results
 
 
 def decision_counts(results: list[dict]) -> dict[str, int]:
