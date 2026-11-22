@@ -8,7 +8,7 @@ Complete this file in the first week, commit it, and do not delete the headings.
 
 - Group ID: <for example G02>
 - Member 1: <MUHAMMAD LUQMAN BIN MOHD AZMI>, <A24CS0138>, <Coordinator & Outputs / Integration Owner>
-- Member 2: <full name>, <matric number>, <Core Logic Owner>
+- Member 2: <AINURRULNAJWA BINTI SAHLAN> <A24CS0223>, <Core Logic Owner>
 - Member 3: <full name>, <matric number>, <Summaries & Ranking Owner>
 
 ## 2. Roles
@@ -55,6 +55,6 @@ We keep ONE shared AI_USE_LOG.md. The Coordinator (Member 1) will maintain the l
 ## 8. Signatures
 
 - Signed: MUHAMMAD LUQMAN BIN MOHD AZMI, A24CS0138, 19/11/2026
-- Signed: <full name>, <matric number>, <date>
-- Signed: <full name>, <matric number>, <date>
-- Signed: <full name>, <matric number>, <date>
+- Signed: AINURRULNAJWA BINTI SAHLAN, A24CS0223,19/11/2026
+- Signed: ABDUL RASYID BIN ABD GHANI A24CS0030,19/11/2026
+
