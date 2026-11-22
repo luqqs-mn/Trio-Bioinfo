@@ -16,6 +16,10 @@ CSV_COLUMNS = [
     "variant", "gene", "chrom", "pos", "depth", "quality", "impact", "decision", "reason",
 ]
 CLI_ARGUMENTS = 3
+ZERO_COUNT = 0
+MEAN_DECIMALS = 1
+DECISION_RANK = {name: idx for idx, name in enumerate(DECISIONS)}
+IMPACT_RANK = {name: idx for idx, name in enumerate(IMPACT_ORDER)}
 
 
 def load_variants(path) -> list[dict]:
@@ -56,7 +60,12 @@ def triage(rows: list[dict], params: dict) -> list[dict]:
 
 def decision_counts(results: list[dict]) -> dict[str, int]:
     """Number of results per decision; keys are always prioritize, review, exclude (in order)."""
-    raise NotImplementedError("TODO: implement decision_counts")
+    counts = {decision:ZERO_COUNT for decision in DECISIONS}
+    for row in results:
+        decision = row["decision"]
+        if decision in counts:
+            counts[decision] += 1
+    return counts
 
 
 def impact_counts(results: list[dict]) -> dict[str, int]:
@@ -64,7 +73,14 @@ def impact_counts(results: list[dict]) -> dict[str, int]:
 
     Keys are always high, moderate, low, modifier (in that order), zeros included.
     """
-    raise NotImplementedError("TODO: implement impact_counts")
+    counts = {impact: ZERO_COUNT for impact in IMPACT_ORDER}
+    for row in results:
+        if row["decision"] == "exclude":
+            continue
+        impact = str(row["impact"]).strip().casefold()
+        if impact in counts:
+            counts[impact] += 1
+    return counts
 
 
 def gene_summary(results: list[dict]) -> dict[str, dict]:
@@ -73,7 +89,29 @@ def gene_summary(results: list[dict]) -> dict[str, dict]:
     Each value is {"total": n, "prioritize": a, "review": b, "exclude": c, "mean_depth": d}
     where mean_depth is the mean depth of ALL the gene's variants, rounded to 1 decimal.
     """
-    raise NotImplementedError("TODO: implement gene_summary")
+    if not results:
+            return {}
+    grouped: dict[str, list[dict]] = {}
+    for row in results:
+            gene = str(row["gene"]).strip()
+            grouped.setdefault(gene, []).append(row)
+    
+    summary = {}
+    for gene in sorted(grouped):
+            gene_rows = grouped[gene]
+            total = len(gene_rows)
+            prio = sum(1 for r in gene_rows if r["decision"] == "prioritize")
+            rev = sum(1 for r in gene_rows if r["decision"] == "review")
+            excl = sum(1 for r in gene_rows if r["decision"] == "exclude")
+            mean_depth = round(sum(int(r["depth"]) for r in gene_rows) / total, MEAN_DECIMALS)
+            summary[gene] = {
+                "total": total,
+                "prioritize": prio,
+                "review": rev,
+                "exclude": excl,
+                "mean_depth": mean_depth,
+            }
+    return summary
 
 
 def rank_variants(results: list[dict], k: int) -> list[dict]:
@@ -85,7 +123,20 @@ def rank_variants(results: list[dict], k: int) -> list[dict]:
     Raises:
         ValueError: if k is negative.
     """
-    raise NotImplementedError("TODO: implement rank_variants")
+    if k < ZERO_COUNT:
+        raise ValueError("k must be non negative")
+    candidates = [dict(r) for r in results if r["decision"] != "exclude" ]
+    ranked = sorted(
+        candidates,
+        key=lambda r: (
+            DECISION_RANK[r["decision"]],
+            IMPACT_RANK[str(r["impact"]).strip().casefold()],
+            -int(r["quality"]),
+            -int(r["depth"]),
+            int(r["pos"],)
+        ),
+    )
+    return ranked[:k]
 
 
 def results_to_csv(results: list[dict]) -> str:
