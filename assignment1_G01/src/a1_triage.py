@@ -93,17 +93,43 @@ def results_to_csv(results: list[dict]) -> str:
 
     Every line ends with a newline. Reason text contains no commas, so no quoting is needed.
     """
-    raise NotImplementedError("TODO: implement results_to_csv")
+    lines = [", ".join(CSV_COLUMNS)]
 
+    for row in results:
+        row_values = [str(row[col]) for col in CSV_COLUMNS]
+        lines.append(", ".join(row_values))
+
+    return "\n".join(lines) + "\n"
 
 def build_report(results: list[dict], params: dict) -> str:
     """Short text report; the line formats are fixed so the report can be checked.
 
-    Lines: title, 'Thresholds: min_depth=D min_quality=Q', 'Priority genes: A, B, ...',
+     Lines: title, 'Thresholds: min_depth=D min_quality=Q', 'Priority genes: A, B, ...',
     'Variants: N', one 'decision: count' line per decision, a blank line,
     'Top K variants' and then 'rank. variant | gene | impact | decision' lines.
     """
-    raise NotImplementedError("TODO: implement build_report")
+    lines = []
+    lines.append("Variant triage report (synthetic teaching data)")
+    lines.append(f"Thresholds: min_depth={params['min_depth']} min_quality={params['min_quality']}")
+    lines.append(f"Priority genes: {', '.join(params['priority_genes'])}")
+    lines.append(f"Variants: {len(results)}")
+
+    counts = decision_counts(results)
+    lines.append(f"prioritize: {counts['prioritize']}")
+    lines.append(f"review: {counts['review']}")
+    lines.append(f"exclude: {counts['exclude']}")
+
+    lines.append("")
+
+    top_k = params['top_k']
+    lines.append(f"Top {top_k} variants")
+
+    top_variants = rank_variants(results, top_k)
+
+    for i, var in enumerate(top_variants, start=1):
+        lines.append(f"{i}. {var['variant']} | {var['gene']} | {var['impact']} | {var['decision']}")
+
+    return "\n".join(lines) + "\n"
 
 
 def main(argv: list[str] | None = None) -> int:
