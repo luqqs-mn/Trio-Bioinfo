@@ -50,7 +50,7 @@ They are read at run time and passed to the functions; they are not typed into t
 
 | Member | Main contributions | Commits |
 |---|---|---|
-| <name> | <files or functions> | <number> |
+| <najuwaaaa> | <files or functions> | <number> |
 
 ## AI use
 
