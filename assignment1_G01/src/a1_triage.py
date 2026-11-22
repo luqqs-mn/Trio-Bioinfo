@@ -125,7 +125,7 @@ def gene_summary(results: list[dict]) -> dict[str, dict]:
     for row in results:
             gene = str(row["gene"]).strip()
             grouped.setdefault(gene, []).append(row)
-    
+
     summary = {}
     for gene in sorted(grouped):
             gene_rows = grouped[gene]
@@ -174,11 +174,11 @@ def results_to_csv(results: list[dict]) -> str:
 
     Every line ends with a newline. Reason text contains no commas, so no quoting is needed.
     """
-    lines = [", ".join(CSV_COLUMNS)]
+    lines = [",".join(CSV_COLUMNS)]
 
     for row in results:
         row_values = [str(row[col]) for col in CSV_COLUMNS]
-        lines.append(", ".join(row_values))
+        lines.append(",".join(row_values))
 
     return "\n".join(lines) + "\n"
 

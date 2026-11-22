@@ -1,31 +1,26 @@
 # Group contract - Assignment 1 (Variant Triage Service)
 
-Complete this file in the first week, commit it, and do not delete the headings. Replace every
-`<...>` placeholder with your own text. Delete the member and signature lines you do not need
-(groups have 3 or 4 members). The marker checks that no `<...>` placeholder is left.
+Complete this file in the first week, commit it, and do not delete the headings. 
 
 ## 1. Group and members
 
-- Group ID: <for example G02>
-- Member 1: <MUHAMMAD LUQMAN BIN MOHD AZMI>, <A24CS0138>, <Coordinator & Outputs / Integration Owner>
-- Member 2: <AINURRULNAJWA BINTI SAHLAN> <A24CS0223>, <Core Logic Owner>
-- Member 3: <full name>, <matric number>, <Summaries & Ranking Owner>
+- Group ID: G01
+- Member 1: MUHAMMAD LUQMAN BIN MOHD AZMI, A24CS0138, Coordinator & Outputs / Integration Owner
+- Member 2: AINURRULNAJWA BINTI SAHLAN, A24CS0223, Core Logic Owner
+- Member 3: ABDUL RASYID BIN ABD GHANI, A24CS0030, Summaries & Ranking Owner
 
 ## 2. Roles
 
-Suggested roles: coordinator (keeps the plan and the issue list), designer (docs/design.md and the
-hand trace), implementer (src/a1_triage.py), tester (tests and ruff), reviewer (reads every change
-before it is merged). Everybody writes code and everybody commits. Roles rotate after the first
-two weeks. <Everybody writes code and everybody commits. The roles are rotated among us after the first week>
+Everybody writes code, everybody commits, and we review each other's work. Since this is a 3-member group, we have divided the coding and testing tasks equally among us:
 
-Since this is a 3 member group, we have decided to divide the coding and testing tasks equally among us
-
-- **Coordinator & Outputs (Member 1):** Handles GitHub setup, `results_to_csv`,`build_report`, named constants, README, and the final CLI run. Also acts as the main reviewer. 
+- **Coordinator & Outputs (Member 1):** Handles GitHub setup, `results_to_csv`, `build_report`, named constants, README, and the final CLI run. Also acts as the main reviewer. 
 - **Core Logic (Member 2):** Handles `classify_variant`, `triage`, and the boundary/invalid-input tests.
 - **Summaries & Ranking (Member 3):** Handles `decision_counts`, `impact_counts`, `gene_summary`, `rank_variants`, and awkward-input tests.
 - **All members:** Will collaborate on `docs/design.md` and the hand-trace table before coding, and will review each other's code.
 
 We will rotate the "Reviewer" role for each major pull request so everyone practices reviewing code.
+
+
 ## 3. How we make decisions
 
 We discuss tasks and problems and divide it equally in our WhatsApp group. For coding decisions, we try to reach a mutual agreement among all members. If there is a disagreement we put it to a vote using whatsapp poll. The Coordinator (Member 1) will determine the final verdict. All final decisions regarding the project will be written down and tracked in the GitHub repository.
