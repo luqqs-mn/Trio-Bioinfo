@@ -91,6 +91,28 @@ Semakan TambahanPastikan pemalar MEAN_DECIMALS = 1 telah ditakrifkan di bahagian
 - My change: removed the spaces in the results_to_csv join function, implemented the CSV and report generation functions, and added the mermaid flowchart to the design document. 
 - Used in: assignment1_G01/src/a1_triage.py (results_to_csv and build_report functions) and docs/design.md
 
+## Entry 5
+
+- Date: 22/11/2026
+- Tool: Gemini
+- Purpose: understand requirements, check code structure, and verify ruff compliance
+- Prompt: i uploaded the assignment brief and my assigned role for Member 2 (classify_variant and triage for Rules 1-6). here are the starter stubs and existing constants in a1_triage.py. guide me on implementing both functions without magic numbers or mutating inputs.
+- Output: Explained the inclusive boundary conditions, strict rule order (1 to 6), case-insensitive string normalization, and comma-free reason strings[cite: 2, 3, 4]. Showed how to unpack the existing DECISIONS tuple and use PRIORITY_IMPACTS to avoid ruff magic-number warnings while creating shallow dictionary copies in triage[cite: 4, 6].
+- Verified by: ran python -m ruff check src with zero errors and ran python -m pytest tests/test_visible.py to confirm the visible triage tests pass[cite: 1].
+- My change: adapted the logic to match the exact starter stub signatures, defined NON_PRIORITY_IMPACTS, implemented classify_variant and triage, and verified input non-mutation.
+- Used in: assignment1_G01/src/a1_triage.py (classify_variant and triage functions)
+
+## Entry 6
+
+- Date: 22/11/2026
+- Tool: Gemini
+- Purpose: debug CLI tool errors and fix Git pathspec issues
+- Prompt: i ran `ruff check src` and `git add src/a1_triage.py` in PowerShell from the root repository folder, but got `CommandNotFoundException` for ruff, `os error 2` on `src`, and `fatal: pathspec 'src/a1_triage.py' did not match any files`. help me fix these errors.
+- Output: Identified that the starter code resides inside the `assignment1_G01/` subdirectory rather than the repository root, and explained how to invoke ruff via `python -m ruff check src` within the active Python environment. Also highlighted potential hidden-test bugs in `classify_variant` such as numeric strings from CSVs needing `int()` casting and reason strings needing to be comma-free[cite: 2, 4].
+- Verified by: navigated into `assignment1_G01/`, ran `python -m ruff check src` and `python -m pytest tests/test_visible.py` with exit code 0, and confirmed `git status` tracked the file properly[cite: 1, 6].
+- My change: updated my working directory to `assignment1_G01/`, verified explicit `int()` casting and comma-free reason formatting in `classify_variant`, and successfully staged and pushed the fixed module to `master`[cite: 2, 4].
+- Used in: assignment1_G01/src/a1_triage.py and local CLI verification workflow
+
 ## Group signatures
 
 - Signed: AINURRULNAJWA BINTI SAHALAN, A24CS0223, 22/11/2026
