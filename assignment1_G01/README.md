@@ -57,9 +57,9 @@ See docs/design.md for our decomposition table, pseudocode flowchart, and hand t
 
 | Member | Main contributions | Commits |
 |---|---|---|
-| Luqman | `results_to_csv, build_report, Git integration, README` | taktahu |
-| Rasyid | `classify_variant`,`triage`, boundary tests | taktahu |
-| Ainur | `decision_counts`, `impact_counts`, `gene_summary`, `rank_variants`, awkward tests | taktahu |
+| Luqman | `results_to_csv, build_report, Git integration, README` | 12 |
+| Rasyid | `classify_variant`,`triage`, boundary tests | 5 |
+| Ainur | `decision_counts`, `impact_counts`, `gene_summary`, `rank_variants`, awkward tests | 9 |
 
 ## AI use
 
